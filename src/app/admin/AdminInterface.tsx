@@ -12,12 +12,13 @@ import {
   SidebarInset,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
-import { Brush, GalleryHorizontal, LayoutDashboard, ShoppingBag, Newspaper } from 'lucide-react';
+import { Palette, GalleryHorizontal, LayoutDashboard, ShoppingBag, Newspaper, Home } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const adminNavItems = [
+  { href: '/', label: 'Home', icon: Home },
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/gallery', label: 'Manage Gallery', icon: GalleryHorizontal },
   { href: '/admin/store', label: 'Manage Store', icon: ShoppingBag },
@@ -33,7 +34,6 @@ export default function AdminInterface({ children }: { children: React.ReactNode
         <Sidebar>
           <SidebarHeader>
             <div className="flex items-center gap-2 p-2">
-              <Brush className="w-6 h-6 text-primary" />
               <span className="text-lg font-semibold">Admin Panel</span>
             </div>
           </SidebarHeader>
@@ -43,7 +43,7 @@ export default function AdminInterface({ children }: { children: React.ReactNode
                 <SidebarMenuItem key={item.href}>
                   <SidebarMenuButton
                     as={Link}
-                    href={item.href}
+                    ref={item.href}
                     isActive={pathname === item.href}
                   >
                     <item.icon />
@@ -55,7 +55,7 @@ export default function AdminInterface({ children }: { children: React.ReactNode
           </SidebarContent>
         </Sidebar>
         <SidebarInset className='min-h-0'>
-          <div className="p-4 bg-card/40 border-b flex items-center gap-4 sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:static">
+           <div className="p-4 bg-card/40 border-b flex items-center gap-4 sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 md:static">
              <SidebarTrigger className="md:hidden" />
              <h1 className="text-xl font-semibold">
                 {adminNavItems.find(item => item.href === pathname)?.label || 'Admin'}

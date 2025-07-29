@@ -16,7 +16,7 @@ const commissions = [
 
 export default function StorePage() {
   return (
-    <div className="container py-16 md:py-24">
+    <div className="container py-16 md:py-24 mx-auto px-4">
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold font-headline">Commission Store</h1>
         <p className="text-lg text-muted-foreground mt-2">Find your perfect artist for a custom piece of art.</p>

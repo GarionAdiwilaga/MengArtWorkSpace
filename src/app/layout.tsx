@@ -1,19 +1,26 @@
+'use client';
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import { usePathname } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'MengArtWork.space',
-  description: 'Community art gallery and commission store',
-};
+// Since this is a client component, metadata should be defined in a separate server component or layout.
+// export const metadata: Metadata = {
+//   title: 'MengArtWork.space',
+//   description: 'Community art gallery and commission store',
+// };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith('/admin');
+
   return (
     <html lang="en" className="dark">
       <head>
@@ -23,7 +30,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased bg-background text-foreground">
         <div className="flex flex-col min-h-screen">
-          <Header />
+          {!isAdminPage && <Header />}
           <main className="flex-grow">
             {children}
           </main>

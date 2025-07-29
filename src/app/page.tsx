@@ -10,22 +10,22 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white bg-gradient-to-br from-primary via-purple-700 to-accent">
+      <section className="relative h-[60vh] min-h-[400px] flex items-center text-center text-white bg-gradient-to-br from-primary via-purple-700 to-accent">
         <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative z-10 p-4">
+        <div className="relative z-10 container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-primary-foreground font-headline">
             Where Creativity Finds a Home
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-primary-foreground/80">
             Discover unique artwork from our vibrant community of artists. Commission custom pieces and support creativity.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button asChild size="lg">
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Button asChild size="lg" className="w-60">
               <Link href="/gallery">
                 Explore Gallery <ArrowRight className="ml-2" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="secondary">
+            <Button asChild size="lg" variant="secondary" className="w-60">
               <Link href="/store">Commission an Artist</Link>
             </Button>
           </div>
@@ -34,7 +34,7 @@ export default function Home() {
       
       {/* Posts Section */}
       <section id="posts" className="py-16 md:py-24 bg-background">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-headline">Latest from the Community</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 ease-in-out shadow-lg hover:shadow-primary/20">
@@ -73,7 +73,7 @@ export default function Home() {
 
       {/* Community Info Section */}
       <section id="community" className="py-16 md:py-24 bg-muted/20">
-        <div className="container">
+        <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 font-headline">Join Our Creative Universe</h2>
@@ -113,7 +113,7 @@ export default function Home() {
 
       {/* Contact Us Section */}
       <section id="contact" className="py-16 md:py-24 bg-background">
-        <div className="container max-w-2xl mx-auto text-center">
+        <div className="container max-w-2xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 font-headline">Get in Touch</h2>
           <p className="text-muted-foreground mb-8">
             Have questions, suggestions, or just want to say hi? Drop us a line!

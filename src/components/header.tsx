@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Brush, ShoppingCart, LayoutDashboard, Menu, X } from 'lucide-react';
+import { Palette, ShoppingCart, LayoutDashboard, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { href: '/gallery', label: 'Gallery', icon: Brush },
+  { href: '/gallery', label: 'Gallery', icon: Palette },
   { href: '/store', label: 'Store', icon: ShoppingCart },
   { href: '/admin', label: 'Admin', icon: LayoutDashboard },
 ];
@@ -40,10 +40,9 @@ export default function Header() {
   
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
-        <div className="mr-4 flex items-center">
+      <div className="container flex h-14 items-center mx-auto px-4">
+        <div className="mr-auto flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Brush className="h-6 w-6 text-primary" />
             <span className="font-bold sm:inline-block">
               MengArtWork.space
             </span>
@@ -56,7 +55,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex flex-1 items-center justify-end md:hidden">
+        <div className="flex items-center justify-end md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -64,10 +63,11 @@ export default function Header() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-background p-4">
+            <SheetContent side="right" className="w-full max-w-xs bg-background p-4" showClose={false}>
+              <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
+              <SheetDescription className="sr-only">Main navigation links</SheetDescription>
               <div className="flex justify-between items-center mb-6">
                 <Link href="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Brush className="h-6 w-6 text-primary" />
                   <span className="font-bold">MengArtWork.space</span>
                 </Link>
                 <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>

@@ -14,7 +14,7 @@ const artworks = [
 
 export default function GalleryPage() {
   return (
-    <div className="container py-16 md:py-24">
+    <div className="container py-16 md:py-24 mx-auto px-4">
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold font-headline">Art Gallery</h1>
         <p className="text-lg text-muted-foreground mt-2">Explore a curated collection of art from our community.</p>
