@@ -14,26 +14,32 @@ async function verifyJWT(token: string) {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const sessionCookie = request.cookies.get('session');
 
-  if (pathname.startsWith('/admin')) {
-    const sessionCookie = request.cookies.get('session');
-
-    if (!sessionCookie) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+  // If trying to access login page with a valid session, redirect to dashboard
+  if (pathname === '/admin/login') {
+    if (sessionCookie) {
+        const sessionPayload = await verifyJWT(sessionCookie.value);
+        if (sessionPayload) {
+            return NextResponse.redirect(new URL('/admin/dashboard', request.url));
+        }
     }
-
-    const sessionPayload = await verifyJWT(sessionCookie.value);
-
-    if (!sessionPayload) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
-    }
-    
-    // If trying to access login page with a valid session, redirect to dashboard
-    if (pathname === '/admin/login') {
-        return NextResponse.redirect(new URL('/admin/dashboard', request.url));
-    }
+    return NextResponse.next();
+  }
+  
+  // For all other admin pages, protect them
+  if (!sessionCookie) {
+    return NextResponse.redirect(new URL('/admin/login', request.url));
   }
 
+  const sessionPayload = await verifyJWT(sessionCookie.value);
+
+  if (!sessionPayload) {
+    const response = NextResponse.redirect(new URL('/admin/login', request.url));
+    response.cookies.delete('session');
+    return response;
+  }
+  
   return NextResponse.next();
 }
 
