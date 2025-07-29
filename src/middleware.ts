@@ -28,16 +28,18 @@ export async function middleware(request: NextRequest) {
   }
   
   // For all other admin pages, protect them
-  if (!sessionCookie) {
-    return NextResponse.redirect(new URL('/admin/login', request.url));
-  }
+  if (pathname.startsWith('/admin')) {
+    if (!sessionCookie) {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
 
-  const sessionPayload = await verifyJWT(sessionCookie.value);
+    const sessionPayload = await verifyJWT(sessionCookie.value);
 
-  if (!sessionPayload) {
-    const response = NextResponse.redirect(new URL('/admin/login', request.url));
-    response.cookies.delete('session');
-    return response;
+    if (!sessionPayload) {
+      const response = NextResponse.redirect(new URL('/admin/login', request.url));
+      response.cookies.delete('session');
+      return response;
+    }
   }
   
   return NextResponse.next();
