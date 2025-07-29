@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Palette, ShoppingCart, LayoutDashboard, Menu, X } from 'lucide-react';
+import { Palette, ShoppingCart, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
@@ -11,7 +11,6 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '/gallery', label: 'Gallery', icon: Palette },
   { href: '/store', label: 'Store', icon: ShoppingCart },
-  { href: '/admin', label: 'Admin', icon: LayoutDashboard },
 ];
 
 export default function Header() {
@@ -37,7 +36,7 @@ export default function Header() {
       </Link>
     );
   };
-  
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center mx-auto px-4">
@@ -48,7 +47,7 @@ export default function Header() {
             </span>
           </Link>
         </div>
-        
+
         <nav className="hidden md:flex items-center space-x-2">
           {navLinks.map((link) => (
             <NavLink key={link.href} {...link} />
