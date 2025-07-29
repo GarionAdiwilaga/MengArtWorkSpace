@@ -15,9 +15,7 @@ export default function AdminRootLayout({
   return (
     <html lang="en" className="dark">
       <body className="font-body antialiased bg-background text-foreground">
-          <AdminInterface>
-            {children}
-          </AdminInterface>
+        <AdminInterface>{children}</AdminInterface>
         <Toaster />
       </body>
     </html>
