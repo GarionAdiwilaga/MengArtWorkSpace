@@ -43,7 +43,7 @@ export default function AdminInterface({ children }: { children: React.ReactNode
                 <SidebarMenuItem key={item.href}>
                   <SidebarMenuButton
                     as={Link}
-                    ref={item.href}
+                    href={item.href}
                     isActive={pathname === item.href}
                   >
                     <item.icon />
