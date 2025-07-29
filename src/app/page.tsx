@@ -13,6 +13,7 @@ export default function Home() {
       <section className="relative h-[60vh] min-h-[400px] flex items-center text-center text-white bg-gradient-to-br from-primary via-purple-700 to-accent">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <div className="relative z-10 container mx-auto px-4">
+          <Image src="/nishiki_art_logo.svg" alt="Logo" width={500} height={500} className="w-4/5 h-auto mx-auto mb-4 max-w-sm" />
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-primary-foreground font-headline">
             Where Creativity Finds a Home
           </h1>
